@@ -13,8 +13,11 @@ function App() {
         <Switch>
             <Route exact path='/' component={MainPage}  />
             <Route exact path='/collections/:name' component={ProductsPage}  />
+            <Route exact path='/contact' render={()=><div>sdsdfsdfsdfsdfsdf</div>}  />
         </Switch>
-        <Footer/>
+        {
+            window.location.pathname !== '/' && <Footer/>
+        }
     </div>
   );
 }

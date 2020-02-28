@@ -66,3 +66,8 @@
         text-align: center;
     }
 }
+@media screen and (min-width: 993px) {
+    .main-page-row {
+        height: 37vw;
+    }
+}

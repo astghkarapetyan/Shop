@@ -180,3 +180,15 @@
 .rotate {
     transform: rotate(180deg);
 }
+.l-menu a{
+    text-decoration: none;
+    color: black;
+}
+.l-menu a:hover{
+    text-decoration: none;
+    color: black;
+}
+#basic-navbar-nav .active {
+    opacity: 0.5;
+
+}

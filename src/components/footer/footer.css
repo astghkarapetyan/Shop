@@ -1,19 +1,60 @@
 .footer-container {
-
+    max-width: 1430px;
+    margin-top:30px;
+    margin-bottom: 30px;
 }
 .footer-container .f-part1 p {
-
+    font-size: 15px;
+    text-align: center;
+    line-height: 2.2;
 }
 .footer-container .f-part2 h3 {
-
+    text-align: center;
+    font-size: 35px;
 }
 .footer-container .f-part2 p {
-
+    text-align: center;
+    font-size: 15px;
+    padding: 20px 0;
+}
+.footer-container .f-part2 .form-control {
+    padding: 17px 10px;
+    font-size: 15px;
+    margin-right: 15px;
 }
 .footer-container #basic-addon2 {
-
+    background: black;
+    color: white;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .footer-container .f-part3 {
 
+}
+.footer-container .f-part3 .contacts svg {
+    width: 23px;
+    height: 32px;
+}
+.footer-container .f-part3 .contacts >div {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    padding-bottom: 15px;
+}
+.footer-container .f-part3 .contacts >div span:last-child {
+    margin-left:10px
+}
+.footer-container .f-part3 .social {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-container .f-part3 .social svg {
+    width: 30px;
+    height: 35px;
+}
+.footer-container .f-part3 .social >span:hover,.footer-container .f-part1 p:hover{
+    cursor: pointer;
+    opacity: 0.5;
 }

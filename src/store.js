@@ -3,8 +3,10 @@ import { productsReducers } from "./reducers/productsReducers";
 
 export const initialState = {
   products:{
-      menProducts:[],
-      womenProducts:[]
+      data:[],
+      error:null,
+      loading:true,
+      categoryName:''
   }
 };
 

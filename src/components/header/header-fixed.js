@@ -1,4 +1,6 @@
 import React,{ useState } from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
 import SmallSearchMenu from "./smallSearchMenu";
@@ -9,7 +11,7 @@ import WomenImag2 from '../img/womens2.jpg';
 import './header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const HeaderFixed = ({openSubMenu,closeSubMenu})=>{
+const HeaderFixed = ({openSubMenu,closeSubMenu,location})=>{
     const [showMenu,setShowMenu] = useState(false);
     const handelToggle = ()=>{
         setShowMenu(!showMenu)
@@ -23,6 +25,9 @@ const HeaderFixed = ({openSubMenu,closeSubMenu})=>{
         showSubMenu:true,
         title:['WOMENS / SUNGLASSES','WOMENS / RX EYEGLASSES'],
         imgSrc:[WomenImag1,WomenImag2]
+    };
+    const activePage = (pName)=>{
+        return location.pathname === pName
     };
     return(
         <>
@@ -40,13 +45,28 @@ const HeaderFixed = ({openSubMenu,closeSubMenu})=>{
                         onMouseOut={closeSubMenu}
                         className='header-after'
                     >
-                        MEN'S
+                        <Link className={activePage('/collections/mens-sunglasses') ? 'active' : null}
+                              to={{
+                                  pathname: '/collections/mens-sunglasses',
+                                  state: {
+                                      categoryNameInState: 'men'
+                                  }
+                              }}
+                        >MEN'S</Link>
                     </Nav.Item>
                     <Nav.Item
                         onMouseOver={()=>openSubMenu(openSubMenuInfoForWomen)}
                         onMouseOut={closeSubMenu}
                         className='header-after'
-                    >WOMEN'S
+                    >
+                        <Link className={activePage('/collections/womens-sunglasses') ? 'active' : null}
+                              to={{
+                                  pathname: '/collections/womens-sunglasses',
+                                  state: {
+                                      categoryNameInState: 'women'
+                                  }
+                              }}
+                        >WOMEN'S</Link>
                     </Nav.Item>
                 </Nav>
 
@@ -83,4 +103,4 @@ const HeaderFixed = ({openSubMenu,closeSubMenu})=>{
     )
 };
 
-export default HeaderFixed
+export default withRouter(HeaderFixed)
