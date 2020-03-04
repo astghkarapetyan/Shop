@@ -5,13 +5,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { actionCartCount } from "../../actions/actionCartCount";
+import { ADDTOCART_COUNT } from "../../actions/actionType";
 import './productDetail.css';
-const ProductDetail = ({products,location})=>{
+const ProductDetail = ({products,location,actionCartCount})=>{
 
     if(!products.length) return <div className='detail-container no-product'>There is not product detail information</div>;
     const { itemIndex } = location.state;
    console.log(itemIndex,'itemIndex')
    const product = products[itemIndex];
+   const addToCart = ()=>{
+       actionCartCount(ADDTOCART_COUNT,product)
+   };
     return(
         <div>
             <Container className='detail-container'>
@@ -34,7 +39,7 @@ const ProductDetail = ({products,location})=>{
                                     {product.price} $
                                 </div>
                                 <div className="add-cart">
-                                    <Button>ADD TO CART</Button>
+                                    <Button onClick={addToCart}>ADD TO CART</Button>
                                 </div>
                             </div>
                     </Col>
@@ -46,4 +51,7 @@ const ProductDetail = ({products,location})=>{
 const mapStateFromProps = ({products:{data}})=>({
     products:data
 });
-export default withRouter(connect(mapStateFromProps)(ProductDetail))
+const mapDispatchToProps = (dispatch)=>({
+    actionCartCount:(type,product)=>dispatch(actionCartCount(type,product))
+});
+export default withRouter(connect(mapStateFromProps,mapDispatchToProps)(ProductDetail))

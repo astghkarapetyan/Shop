@@ -1,16 +1,14 @@
 import React,{ useState } from 'react';
-
+import { connect } from 'react-redux';
 import HeaderFixed from './header-fixed';
 import HeaderSubMenu from "./header-sub-menu";
 
 import './header.css'
-const Header = ()=>{
+const Header = ({cartCount})=>{
     const [sumMenuInfo,setSumMenuInfo] = useState({showSubMenu:false});
-
     const openSubMenu = (showInfo)=>{
         setSumMenuInfo(showInfo)
     };
-
     const closeSubMenu = ()=>{
         setSumMenuInfo({showSubMenu:false})
     };
@@ -23,6 +21,7 @@ const Header = ()=>{
                 <HeaderFixed
                     openSubMenu = { openSubMenu }
                     closeSubMenu = { closeSubMenu }
+                    cartCount = {cartCount}
                 />
             </div>
             {
@@ -36,5 +35,7 @@ const Header = ()=>{
         </div>
     )
 };
-
-export default Header
+const mapStateToProps = ({cartInfo:{cartCount}})=>({
+    cartCount
+});
+export default connect(mapStateToProps)(Header)

@@ -1,5 +1,5 @@
 import { initialState } from "../store";
-import { PRODUCTS,PRODUCTSREQUESTED } from "../actions/actionType";
+import { PRODUCTS,PRODUCTSREQUESTED,CARTCOUNT} from "../actions/actionType";
 
 export const productsReducers = (state = initialState.products,action)=>{
     switch (action.type) {
@@ -9,11 +9,10 @@ export const productsReducers = (state = initialState.products,action)=>{
             state.categoryName = action.categoryName;
             return {...state};
         case PRODUCTSREQUESTED:
-            state  = {
+            return {
                 ...state,
                 loading:true
             };
-            return state;
         default:
             return state
     }

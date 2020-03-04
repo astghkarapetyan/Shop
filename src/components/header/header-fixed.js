@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
 import SmallSearchMenu from "./smallSearchMenu";
+import Cart from './cart';
 import MenImag1 from '../img/men.jpg';
 import MenImag2 from '../img/men2.webp';
 import WomenImag1 from '../img/womens.jpg';
@@ -11,10 +12,14 @@ import WomenImag2 from '../img/womens2.jpg';
 import './header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const HeaderFixed = ({openSubMenu,closeSubMenu,location})=>{
+const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
     const [showMenu,setShowMenu] = useState(false);
+    const [showCart,setShowCart] = useState(false);
     const handelToggle = ()=>{
         setShowMenu(!showMenu)
+    };
+    const handelCartToggle = ()=>{
+        setShowCart(!showCart)
     };
     const openSubMenuInfoForMen = {
         showSubMenu:true,
@@ -80,7 +85,8 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location})=>{
                 <Nav.Item className='header-after header-price'>
                     USD
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item onClick={handelCartToggle}>
+                    <span className='cartCount'>{cartCount}</span>
                     <svg style={{width:'40px',height:'26px'}} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" >
                         <path fill="currentColor" d="M6.74947953,4.75 L6.74947953,6 L13.2494795,6 L13.2494795,4.75 C13.2494795,2.958 11.7914795,1.5 9.99947953,1.5 C8.20747953,1.5 6.74947953,2.958 6.74947953,4.75 Z M2.81447953,18 L17.1844795,18 L16.3104795,7.5 L14.7494795,7.5 L13.2494795,7.5 L6.74947953,7.5 L5.24947953,7.5 L3.68947953,7.5 L2.81447953,18 Z M1.99947953,19.5 C1.79047953,19.5 1.58847953,19.412 1.44747953,19.258 C1.30647953,19.104 1.23547953,18.897 1.25247953,18.687 L2.25247953,6.688 C2.28547953,6.295 2.60547953,6 2.99947953,6 L5.24947953,6 L5.24947953,4.75 C5.24947953,2.131 7.38047953,0 9.99947953,0 C12.6184795,0 14.7494795,2.131 14.7494795,4.75 L14.7494795,6 L16.9994795,6 C17.3864795,6 17.7144795,6.302 17.7464795,6.687 L18.7464795,18.687 C18.7634795,18.896 18.6914795,19.104 18.5524795,19.258 C18.4094795,19.412 18.2084795,19.5 17.9994795,19.5 L1.99947953,19.5 Z"></path>
                     </svg>
@@ -98,6 +104,9 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location})=>{
         </Navbar>
             {
                  showMenu ? <SmallSearchMenu handelToggle={handelToggle} /> :''
+            }
+            {
+                showCart ? <Cart  handelCartToggle={handelCartToggle} /> :''
             }
         </>
     )
