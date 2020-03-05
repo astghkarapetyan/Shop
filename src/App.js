@@ -4,7 +4,9 @@ import Header from './components/header';
 import MainPage from './components/main-page';
 import ProductsPage from './components/products-page';
 import ProductDetail from './components/productDetail';
-import Footer from './components/footer'
+import Footer from './components/footer';
+import Login from './components/login';
+import Register from './components/register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App({location}) {
@@ -13,6 +15,8 @@ function App({location}) {
         <Header/>
         <Switch>
             <Route exact path='/' component={MainPage}  />
+            <Route exact path='/account/login' component={Login}  />
+            <Route exact path='/account/register' component={Register}  />
             <Route exact path='/collections/:name' component={ProductsPage}  />
             <Route exact path='/collections/:name/products/:dName' component={ProductDetail} />
         </Switch>

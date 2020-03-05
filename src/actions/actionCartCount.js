@@ -1,5 +1,5 @@
 
-export const actionCartCount = (type,id)=>({
+export const actionCartCount = (type,product)=>({
     type,
-    payload:id ? id :null
+    payload:product ? product :null
 });

@@ -8,6 +8,14 @@
     text-align: center;
     line-height: 2.2;
 }
+.footer-container .f-part1 p>a {
+    text-decoration: none;
+    color:black;
+}
+.footer-container .f-part1 p>a:hover {
+    text-decoration: none;
+    color:black;
+}
 .footer-container .f-part2 h3 {
     text-align: center;
     font-size: 35px;

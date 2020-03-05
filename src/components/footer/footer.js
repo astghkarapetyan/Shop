@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,7 +13,7 @@ const Footer = ()=>{
                 <Row>
                     <Col lg={3} sm={6} xs={12}>
                         <div className='f-part1'>
-                            <p>MY ACCOUNT</p>
+                            <p><Link to='/account/login'>MY ACCOUNT</Link></p>
                             <p>TRACK MY ORDER</p>
                             <p>RETURNS</p>
                             <p> WARRANTY</p>
