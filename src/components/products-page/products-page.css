@@ -37,6 +37,13 @@
 .products-item {
     font-size: 16px;
     text-align: center;
+    /*opacity: 0;*/
+    transform: translateY(40px);
+}
+.products-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all .2s;
 }
 .product-img{
     padding-top:15px;

@@ -33,17 +33,22 @@
     padding: 10px 43px;
     font-size: 13px;
     border: none;
+    margin-top:25px;
+}
+.register-container form .register:active{
+    background: black !important;
+    border: black !important;
+    box-shadow: none !important;
+    outline: none;
+}
+.register-container form .register:focus {
+    box-shadow: none !important;
 }
 .register-container form .register:hover {
     cursor: pointer;
     background: #424242;
     border: none;
 }
-.register-container form .register>a {
-    text-decoration: none;
-    color:black;
-}
-.register-container form .register>a:hover {
-    text-decoration: none;
-    color:black;
+.register-container .text-muted {
+    color:red !important;
 }

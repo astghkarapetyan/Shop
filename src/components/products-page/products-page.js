@@ -1,7 +1,7 @@
 import React,{ useEffect,useRef,useState} from 'react';
 import { connect } from 'react-redux';
 import ProductsList from './productList';
-import Loading from '../loading'
+import Loading from '../loading';
 import { actionProducts } from "../../actions/actionProducts";
 import { actionProductsRequested } from "../../actions/actionProductsRequested";
 import { withProductsStoreService } from '../hoc';
@@ -58,8 +58,10 @@ const ProductsPage = ({
                     <span>COLOR</span>
                 </div>
             </div>
-            {loading && <Loading/>}
-            <ProductsList products={products} />
+            {loading ?(
+                <Loading/>
+            ) : <ProductsList products={products} />}
+
 
         </div>
     )

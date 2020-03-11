@@ -37,6 +37,13 @@
     font-size: 13px;
     border: none;
 }
+.login-container form .login:active{
+    background-color: black !important;
+    border-color: black !important;
+    box-shadow: 0 0 0 0.2rem rgba(54, 54, 54, 0.2) !important;
+    outline: none;
+}
+
 .login-container form .login:hover {
     cursor: pointer;
     background: #424242;
@@ -64,16 +71,31 @@
     width: 175px;
     color: #828181;
 }
+
+.login-container .login-info .registration {
+    text-decoration: none;
+    color:black;
+    width: 175px;
+}
 .login-container .login-info .registration:hover {
-    cursor: pointer;
-    background: rgba(18, 18, 18, 0.22);
-    border: none;
+     cursor: pointer;
+     background: rgba(18, 18, 18, 0.22);
+     border: none;
+     color:black;
+     text-decoration: none;
+ }
+.login-container .login-info .registration button {
+    background: none;
+    border:none;
+    color: inherit;
+    font-size: 15px;
 }
-.login-container .login-info .registration>a {
-    text-decoration: none;
-    color:black;
+.login-container .login-info .registration button:active{
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
 }
-.login-container .login-info .registration>a:hover {
-    text-decoration: none;
-    color:black;
+.login-container .login-info .registration button:focus {
+    box-shadow: none !important;
 }

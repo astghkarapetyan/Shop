@@ -15,7 +15,7 @@ const updateCartItemPordz = (cartItem = {},product,quantity)=>{
         count = 0,
         price = 0
     } = cartItem;
-    let newPrice = count>0 ? product.price/count : product.price;
+    let newPrice = count>0 ? cartItem.price/count : product.price;
     return {
         id,
         name,
@@ -70,7 +70,7 @@ const updateCartPordz = (state,product,quantity)=>{
     const cartItem = cart[cartItemIndex];
 
     const newItem = updateCartItemPordz(cartItem,product,quantity);
-    console.log(newItem,'eeeeeeeeeeeeeeeeeeeeeeee')
+
     return updateCartItemsPordz(state,cartItemIndex,newItem,quantity)
 
 };

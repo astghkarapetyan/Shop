@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
@@ -12,7 +13,6 @@ const ProductDetail = ({products,location,actionCartCount})=>{
 
     if(!products.length) return <div className='detail-container no-product'>There is not product detail information</div>;
     const { itemIndex } = location.state;
-   console.log(itemIndex,'itemIndex')
    const product = products[itemIndex];
    const addToCart = ()=>{
        actionCartCount(ADDTOCART_COUNT,product)
@@ -23,7 +23,7 @@ const ProductDetail = ({products,location,actionCartCount})=>{
                 <Row>
                     <Col xs={12} sm={6} md={7}>
                         <div className="detail-part1">
-                            <img src={require(`../img/${product.img[0]}`)}  />
+                            <img src={require(`../img/${product.img[0]}`)} />
                         </div>
 
                     </Col>
