@@ -86,7 +86,6 @@ class ProductStoreServices{
             ]
     };
     getProducts(categoryName){
-        console.log(categoryName,'dddddddd')
         return new Promise((res)=>{
             setTimeout(()=>res(this.state[categoryName]),2000)
         })

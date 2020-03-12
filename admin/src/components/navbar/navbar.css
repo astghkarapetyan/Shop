@@ -1,0 +1,37 @@
+
+.navbar-container {
+    width: 210px;
+    overflow: auto;
+    background: #424a5d;
+    padding: 0 15px;
+    transition: all .8s ease;
+    flex-shrink: 0
+}
+.navbar-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 75px;
+
+}
+
+.navbar-container li a {
+    display: block;
+    color: #aeb2b7;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    font-size: 16px;
+}
+
+.navbar-container li a.active {
+    background: #68dff0;
+    color: #fff;
+}
+.navbar-container li a:hover:not(.active) {
+    background: #68dff0;
+    color: #fff;
+}
+.hideNavbar {
+    margin-left: -210px;
+}
+

@@ -32,7 +32,7 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
         imgSrc:[WomenImag1,WomenImag2]
     };
     const activePage = (pName)=>{
-        return location.pathname === pName
+        return location.pathname.includes(pName)
     };
     return(
         <>

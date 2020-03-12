@@ -1,0 +1,21 @@
+.header-container {
+    width: 100%;
+    background: #ffd777;
+    border-bottom: 1px solid #c9aa5f;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+}
+.header-content .header-part1 button.logout  {
+    border: 1px solid #64c3c2 !important;
+    padding: 5px 15px;
+    background: #68dff0;
+    font-size: 18px!important;
+}
+.header-part1 span:first-child {
+    font-size:25px;
+}
+.header-part1 span:first-child:hover {
+    cursor: pointer;
+}
