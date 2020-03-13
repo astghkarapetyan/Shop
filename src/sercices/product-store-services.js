@@ -42,43 +42,43 @@ class ProductStoreServices{
             ],
         women:[
             {
-                id:1,
+                id:7,
                 name:'CANBY WOOD ',
                 price:'85.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:2,
+                id:8,
                 name:'KINSROW WOOD ',
                 price:'102.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:3,
+                id:9,
                 name:'ARLENE ACETATE ',
                 price:'96.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:4,
+                id:10,
                 name:'CANBY ACETATE ',
                 price:'75.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:5,
+                id:11,
                 name:'CANBY WOOD ',
                 price:'85.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:6,
+                id:12,
                 name:'FRANCIS ACETATE',
                 price:'105.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']
             },
             {
-                id:7,
+                id:13,
                 name:'KINSROW ACETATE',
                 price:'130.00',
                 img:['productWommenImg1.jpg','productWommenImg2.jpg']

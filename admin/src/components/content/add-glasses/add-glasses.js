@@ -48,7 +48,7 @@ const  AddGlasses = ()=> {
         let allowToAdd = true;
         Object.keys(addInfo).map(item=>{
             if(!addInfo[item].length){
-                setErrors({[`error${item}`]:true})
+                setErrors({[`error${item}`]:true});
                 allowToAdd = false
             }
         });
