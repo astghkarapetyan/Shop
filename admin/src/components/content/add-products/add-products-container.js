@@ -1,34 +1,36 @@
-import React,{ useReducer } from 'react';
+import React,{ useReducer ,useEffect} from 'react';
+import withProductsRequestService from '../../hoc';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './add-glasses.css';
+import './add-products.css';
 
-const  AddGlasses = ()=> {
+const  AddProductsContainer = ({productsRequestService,categories = {},actionAddOneProduct})=> {
     const initialObject = {
-        categoryId:'',
+        category_name_id:'',
         name:'',
         price:'',
-        sendUrls:[],
+        images:[],
         showUrls:[]
     };
     const initialErrorObject = {
-        errorcategoryId:false,
+        errorcategory_name_id:false,
         errorname:false,
-        errorprice:false
+        errorprice:false,
+        errorimages:false
     };
     const [addInfo,setAddInfo] = useReducer((state,newState)=>({...state,...newState}),initialObject);
     const [ errors,setErrors ] = useReducer((state,newState)=>({...state,...newState}),initialErrorObject);
     const getChooseImageUrls = (files)=>{
-        const { sendUrls,showUrls } = addInfo;
-        const newSendUrls = [...sendUrls];
+        const { images,showUrls } = addInfo;
+        const newimages = [...images];
         const newShowUrls = [...showUrls];
         Object.keys(files).map(index=>{
-            newSendUrls.push(files[index]);
+            newimages.push(files[index]);
             newShowUrls.push(URL.createObjectURL(files[index]));
         });
-        setAddInfo({sendUrls:newSendUrls,showUrls:newShowUrls})
+        setAddInfo({images:newimages,showUrls:newShowUrls})
     };
 
     const getAddInfo = (event)=>{
@@ -46,25 +48,38 @@ const  AddGlasses = ()=> {
     };
     const sendAddInfo = ()=>{
         let allowToAdd = true;
-        Object.keys(addInfo).map(item=>{
+
+        const formatData = new FormData();
+        let addInfoKeys = Object.keys(addInfo);
+        addInfoKeys = addInfoKeys.slice(0,addInfoKeys.length-1);
+        addInfoKeys.map(item=>{
+            if(typeof addInfo[item] === "object"){
+                addInfo[item].map(img =>formatData.append('images',img))
+            }else{
+                formatData.append(`${item}`,addInfo[item])
+            }
             if(!addInfo[item].length){
                 setErrors({[`error${item}`]:true});
                 allowToAdd = false
             }
         });
         if(allowToAdd){
-            //
+            productsRequestService
+                .addProduct(formatData,actionAddOneProduct)
+
+            setAddInfo(initialObject)
         }
     };
     const {
-        categoryId,
+        category_name_id,
         name,
         price,
         showUrls } = addInfo;
     const {
-        errorcategoryId,
+        errorcategory_name_id,
         errorname,
-        errorprice
+        errorprice,
+        errorimages
     } = errors;
     return (
         <div className="add-glasses-container">
@@ -74,17 +89,23 @@ const  AddGlasses = ()=> {
                     <Form.Control
                         as="select"
                         size="lg"
-                        name='categoryId'
+                        name='category_name_id'
                         onChange={getAddInfo}
-                        value={categoryId}
-                        style={errorcategoryId ? { border:'1px solid red'}: null}
+                        value={category_name_id}
+                        style={errorcategory_name_id ? { border:'1px solid red'}: null}
                     >
-                        <option></option>
-                        <option value='1'>Men</option>
-                        <option value='2'>Women</option>
+                        <option value=''></option>
+                        {
+                           'categoryName' in categories ?
+                               (
+                                   categories.categoryName.map(({category_name_id,category_name})=>(
+                                         <option key={category_name_id} value={category_name_id}>{category_name}</option>
+                                     ))
+                               ) : ''
+                        }
                     </Form.Control>
                     <Form.Text className="text-muted">
-                        {errorcategoryId ? 'This field is require' : ''}
+                        {errorcategory_name_id ? 'This field is require' : ''}
                     </Form.Text>
                 </Form.Group>
                 <Form.Group>
@@ -117,23 +138,33 @@ const  AddGlasses = ()=> {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Add image(s)</Form.Label>
-                    <Form.Control
-                        type="file"
-                        name='file'
-                        onChange={getAddInfo}
-                        multiple="multiple"
-                    />
+                    <div className='add-image'>
+                        <label className="choose-image-label">
+                            <span>Add Image</span>
+                            <Form.Control
+                                type="file"
+                                name='file'
+                                onChange={getAddInfo}
+                                multiple="multiple"
+                            />
+                        </label>
+                    </div>
+
+
+
                     <Row  className='img-block'>
                         {
                             showUrls.map(url=>(
-                                <Col xs={1} className='img-item'>
+                                <Col key={url} xs={1} className='img-item'>
                                     <img src={url} />
                                 </Col>
 
                             ))
                         }
                     </Row>
-
+                    <Form.Text className="text-muted">
+                        {errorimages ? 'This field is require' : ''}
+                    </Form.Text>
 
 
                 </Form.Group>
@@ -151,4 +182,4 @@ const  AddGlasses = ()=> {
     );
 };
 
-export default AddGlasses;
+export default AddProductsContainer;

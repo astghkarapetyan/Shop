@@ -1,0 +1,29 @@
+.all-products-container {
+    width: 100%;
+}
+.all-products-list-container .products-images img{
+    width: 48%;
+    max-width: 100%;
+    object-fit: cover;
+    height: 65px;
+}
+.all-products-list-container .images {
+    width: 12%;
+}
+.all-products-list-container{
+    margin: 38px 15px;
+}
+.all-products-list-container th{
+    font-size: 16px;
+}
+.all-products-list-container td{
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 15px;
+}
+.all-products-list-container .actions button:first-child{
+    margin-right:14px;
+}
+.all-products-list-container .actions button{
+    font-size: 15px;
+}

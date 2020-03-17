@@ -20,6 +20,12 @@ const  Navbar = ({location})=> {
                         to='/add-glasses'
                     >Add Glasses</Link>
                 </li>
+                <li>
+                    <Link
+                        className={setActiveClass('/products') ? 'active': null}
+                        to='/products'
+                    >Products</Link>
+                </li>
             </ul>
         </div>
     );
