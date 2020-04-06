@@ -185,11 +185,11 @@
 }
 .cart-body .product-price{
     font-size: 18px;
-    padding: 0 15px;
+    padding: 0 5px;
 }
 .cart-body .remove-from-cart{
     font-size: 25px;
-    padding: 0 15px;
+    padding: 0 5px;
 }
 .cart-body .remove-from-cart:hover{
     cursor: pointer;

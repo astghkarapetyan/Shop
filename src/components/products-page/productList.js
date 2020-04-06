@@ -14,6 +14,7 @@ const ProductsList = ({products,location})=>{
         setHoverImage({})
     };
     const setToAddress = (productName)=>{
+
         const path = `${location.pathname}/products/${productName.replace(/ /g, "-").toLowerCase()}`;
         return path.slice(0,path.length-1)
     };
@@ -22,11 +23,11 @@ const ProductsList = ({products,location})=>{
             <Container className='products-container'>
                 <Row>
                     {
-                        products.map(({id,img,name,price},index)=>(
+                        products.map(({product_id,images,name,price},index)=>(
                             <Col
-                                 onMouseOver={()=>showSecondImage(id,img[1])}
+                                 onMouseOver={()=>showSecondImage(product_id,JSON.parse(images)[1])}
                                  onMouseOut={closeSecondImage}
-                                 key={id}
+                                 key={product_id}
                                  sm={12}
                                  md={6}
                                  lg={4}
@@ -40,12 +41,12 @@ const ProductsList = ({products,location})=>{
                                               to={{
                                                   pathname: setToAddress(name),
                                                   state: {
-                                                      itemId:id,
+                                                      itemId:product_id,
                                                       itemIndex: index
                                                   }
                                               }}
                                         >
-                                            <img src={require(`../img/${hoverImage[id] ? img[1] : img[0]}`)} />
+                                            <img src={require(`../img/${hoverImage[product_id] ? JSON.parse(images)[1] : JSON.parse(images)[0]}`)} />
                                         </Link>
                                     </div>
                                     <div className='product-name'>

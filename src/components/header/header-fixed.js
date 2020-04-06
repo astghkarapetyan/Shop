@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Navbar from 'react-bootstrap/Navbar'
@@ -12,7 +12,7 @@ import WomenImag2 from '../img/womens2.jpg';
 import './header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
+const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount,categories})=>{
     const [showMenu,setShowMenu] = useState(false);
     const [showCart,setShowCart] = useState(false);
     const handelToggle = ()=>{
@@ -21,19 +21,22 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
     const handelCartToggle = ()=>{
         setShowCart(!showCart)
     };
-    const openSubMenuInfoForMen = {
-        showSubMenu:true,
-        title:['MENS / SUNGLASSES','MENS / RX EYEGLASSES'],
-        imgSrc:[MenImag1,MenImag2]
-    };
-    const openSubMenuInfoForWomen = {
-        showSubMenu:true,
-        title:['WOMENS / SUNGLASSES','WOMENS / RX EYEGLASSES'],
-        imgSrc:[WomenImag1,WomenImag2]
+    const submenuInfo = {
+        men: {
+            showSubMenu: true,
+            title: ['MENS / SUNGLASSES', 'MENS / RX EYEGLASSES'],
+            imgSrc: [MenImag1, MenImag2]
+        },
+        women:{
+            showSubMenu:true,
+            title:['WOMENS / SUNGLASSES','WOMENS / RX EYEGLASSES'],
+            imgSrc:[WomenImag1,WomenImag2]
+        }
     };
     const activePage = (pName)=>{
-        return location.pathname.includes(pName)
+        return location.pathname === pName
     };
+    const { categoryName } = categories;
     return(
         <>
             <Navbar variant='white' expand="lg">
@@ -47,34 +50,26 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
             <Navbar.Toggle onClick={handelToggle}  aria-controls="basic-navbar-nav"></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto l-menu">
-                    <Nav.Item
-                        onMouseOver={()=>openSubMenu(openSubMenuInfoForMen)}
-                        onMouseOut={closeSubMenu}
-                        className='header-after'
-                    >
-                        <Link className={activePage('/collections/mens-sunglasses') ? 'active' : null}
-                              to={{
-                                  pathname: '/collections/mens-sunglasses',
-                                  state: {
-                                      categoryNameInState: 'men'
-                                  }
-                              }}
-                        >MEN'S</Link>
-                    </Nav.Item>
-                    <Nav.Item
-                        onMouseOver={()=>openSubMenu(openSubMenuInfoForWomen)}
-                        onMouseOut={closeSubMenu}
-                        className='header-after'
-                    >
-                        <Link className={activePage('/collections/womens-sunglasses') ? 'active' : null}
-                              to={{
-                                  pathname: '/collections/womens-sunglasses',
-                                  state: {
-                                      categoryNameInState: 'women'
-                                  }
-                              }}
-                        >WOMEN'S</Link>
-                    </Nav.Item>
+                    {
+                        categoryName.map( ({id,category_name }) =>(
+                            <Nav.Item
+                                // onMouseOver={()=>openSubMenu(submenuInfo[category_name])}
+                                // onMouseOut={closeSubMenu}
+                                className='header-after'
+                                key={id}
+                            >
+                                <Link className={activePage(`/collections/${category_name}-sunglasses`) ? 'active' : null}
+                                      to={{
+                                          pathname: `/collections/${category_name}-sunglasses`,
+                                          state: {
+                                              categoryNameInState: category_name,
+                                              category_id:id
+                                          }
+                                      }}
+                                >{category_name.toUpperCase()}</Link>
+                            </Nav.Item>
+                        ))
+                    }
                 </Nav>
 
             </Navbar.Collapse>
@@ -114,4 +109,4 @@ const HeaderFixed = ({openSubMenu,closeSubMenu,location,cartCount})=>{
     )
 };
 
-export default withRouter(HeaderFixed)
+export default React.memo(withRouter(HeaderFixed))

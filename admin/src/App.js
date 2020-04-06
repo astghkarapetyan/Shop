@@ -16,10 +16,13 @@ const  App = ({location})=> {
                     <Header/>
                     <div className='app-container'>
                         <Navbar/>
-                        <Switch>
-                            <Route exact path='/add-glasses' component={AddGlasses}  />
-                            <Route exact path='/products' component={AllProducts}  />
-                        </Switch>
+                        <div className='content-container'>
+                            <Switch>
+                                <Route exact path='/add-glasses' component={AddGlasses}  />
+                                <Route exact path='/products' component={AllProducts}  />
+                            </Switch>
+                        </div>
+
                     </div>
 
                 </>

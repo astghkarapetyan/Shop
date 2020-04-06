@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -6,14 +6,27 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Loading from '../loading';
+import { withProductsStoreService } from '../hoc';
 import { actionCartCount } from "../../actions/actionCartCount";
 import { ADDTOCART_COUNT } from "../../actions/actionType";
 import './productDetail.css';
-const ProductDetail = ({products,location,actionCartCount})=>{
+const ProductDetail = ({products,location,actionCartCount,productsStoreService})=>{
 
-    if(!products.length) return <div className='detail-container no-product'>There is not product detail information</div>;
-    const { itemIndex } = location.state;
-   const product = products[itemIndex];
+    const { itemIndex = '',itemId = '' } = location.state;
+    const [product , setProduct] = useState(products[itemIndex]);
+
+    useEffect(()=>{
+        if(!product){
+            productsStoreService
+                .getProduct(itemId)
+                .then( product =>{
+                    setProduct(product[0])
+                });
+
+        }
+    },[]);
+    if(!product) return <Loading/>;
    const addToCart = ()=>{
        actionCartCount(ADDTOCART_COUNT,product)
    };
@@ -23,7 +36,7 @@ const ProductDetail = ({products,location,actionCartCount})=>{
                 <Row>
                     <Col xs={12} sm={6} md={7}>
                         <div className="detail-part1">
-                            <img src={require(`../img/${product.img[0]}`)} />
+                            <img src={require(`../img/${JSON.parse(product.images)[0]}`)} />
                         </div>
 
                     </Col>
@@ -54,4 +67,6 @@ const mapStateFromProps = ({products:{data}})=>({
 const mapDispatchToProps = (dispatch)=>({
     actionCartCount:(type,product)=>dispatch(actionCartCount(type,product))
 });
-export default withRouter(connect(mapStateFromProps,mapDispatchToProps)(ProductDetail))
+export default withProductsStoreService()(
+    withRouter(connect(mapStateFromProps,mapDispatchToProps)(ProductDetail))
+)

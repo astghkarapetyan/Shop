@@ -16,7 +16,7 @@ const ProductsPage = ({
           actionProductsRequested
     })=>{
     const [spansFidex,setSpansFixed] = useState(false);
-    const { categoryNameInState  } = location.state;
+    const { categoryNameInState,category_id  } = location.state;
     const spansParentRef = useRef(null);
     const listenToScroll = ()=>{
         if( window.pageYOffset + 105 > spansParentRef.current.offsetTop){
@@ -35,7 +35,7 @@ const ProductsPage = ({
         if(categoryNameInState !== categoryName){
             actionProductsRequested();
             productsStoreService
-                .getProducts(categoryNameInState)
+                .getProducts(category_id)
                 .then( products =>{
                     actionProducts(products,categoryNameInState);
                 });

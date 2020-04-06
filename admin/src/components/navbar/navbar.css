@@ -34,4 +34,7 @@
 .hideNavbar {
     margin-left: -210px;
 }
+.navbar-list li:not(:last-child) {
+    margin-bottom: 15px;
+}
 

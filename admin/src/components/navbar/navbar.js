@@ -13,7 +13,7 @@ const  Navbar = ({location})=> {
             className={`navbar-container ${hideNavbar ? 'hideNavbar' : null }`}
         >
 
-            <ul>
+            <ul className='navbar-list'>
                 <li>
                     <Link
                         className={setActiveClass('/add-glasses') ? 'active': null}

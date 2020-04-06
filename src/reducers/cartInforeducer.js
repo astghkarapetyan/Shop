@@ -9,19 +9,23 @@ import {
 
 const updateCartItemPordz = (cartItem = {},product,quantity)=>{
     const {
-        id = product.id,
+        product_id = product.product_id,
         name = product.name,
-        img = product.img,
+        images = product.images,
         count = 0,
         price = 0
     } = cartItem;
+    console.log(cartItem,'cartItem')
     let newPrice = count>0 ? cartItem.price/count : product.price;
+    const newCount = count + quantity;
+    const finalPrice = newCount !== 0  ? price + quantity*newPrice : newPrice ;
+    console.log(finalPrice,'finalPrice11111111111')
     return {
-        id,
+        product_id,
         name,
-        img,
-        count:count + quantity,
-        price:price + quantity*newPrice
+        images,
+        count:newCount,
+        price:finalPrice
     }
 
 
@@ -29,10 +33,10 @@ const updateCartItemPordz = (cartItem = {},product,quantity)=>{
 
 const updateCartItemsPordz = (state,cartItemIndex,newItem,quantity)=>{
     const { cart,totalPrice,cartCount} = state;
-    let newCartCount = newItem.count>0 ? cartCount +  quantity : 0;
+    let newCartCount = newItem.count > 0 ? cartCount +  quantity : 0;
     if(newItem.count <=0){
         return {
-            totalPrice:totalPrice - newItem.price,
+            totalPrice:totalPrice - (Math.abs(quantity) * newItem.price),
             cartCount:newCartCount,
             cart:[
                 ...cart.slice(0,cartItemIndex),
@@ -66,7 +70,7 @@ const updateCartItemsPordz = (state,cartItemIndex,newItem,quantity)=>{
 
 const updateCartPordz = (state,product,quantity)=>{
     const { cart } = state;
-    const cartItemIndex = cart.findIndex(({id})=> id === product.id);
+    const cartItemIndex = cart.findIndex(({product_id})=> product_id === product.product_id);
     const cartItem = cart[cartItemIndex];
 
     const newItem = updateCartItemPordz(cartItem,product,quantity);
@@ -86,7 +90,7 @@ export const cartInfoReducer = (state = initialState.cartInfo,action)=>{
         case REMOVEPRODUCTTOCART_COUNT:
             const { cart } = state;
             const remove_one_product = action.payload;
-            const findProduct = cart.find(({id})=> id === remove_one_product.id);
+            const findProduct = cart.find(({product_id})=> product_id === remove_one_product.product_id);
             const count = findProduct.count;
             return updateCartPordz(state,remove_one_product,-count);
         case REMOVEALLPRODUCTTOCART_COUNT:

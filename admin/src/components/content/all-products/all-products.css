@@ -2,7 +2,7 @@
     width: 100%;
 }
 .all-products-list-container .products-images img{
-    width: 48%;
+    width: 135px;
     max-width: 100%;
     object-fit: cover;
     height: 65px;
@@ -26,4 +26,8 @@
 }
 .all-products-list-container .actions button{
     font-size: 15px;
+}
+.all-products-container .no-products {
+    text-align: center;
+    font-size: 18px;
 }

@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect } from 'react';
 import { Link } from  'react-router-dom';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +7,7 @@ import {actionCartCount} from "../../actions/actionCartCount";
 import { REMOVEPRODUCTTOCART_COUNT,REMOVEALLPRODUCTTOCART_COUNT,ADDTOCART_COUNT,REMOVETOCART_COUNT} from "../../actions/actionType";
 
 const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
+
     const { cart, totalPrice} = cartInfo;
     const removeProduct = (product)=>{
         actionCartCount(REMOVEPRODUCTTOCART_COUNT,product)
@@ -43,24 +44,24 @@ const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
                                 <div className="cart-body">
                                     {
                                         cart.map((product)=>(
-                                            <Row key={product.id}>
+                                            <Row key={product.product_id}>
                                                 <Col xs={2} className = 'img-block'>
                                                     <span className='show-product-count'>{product.count}</span>
-                                                    <img src={require(`../img/${product.img[0]}`)} />
+                                                    <img src={require(`../img/${JSON.parse(product.images)[0]}`)} />
                                                 </Col>
                                                 <Col xs={5} className = 'product-name'>
                                                     <p>{product.name}</p>
                                                     <p>TORTOISE / WALNUT / BASIC POLARIZED GREY</p>
                                                 </Col>
-                                                <Col xs='auto' className = 'product-control-buttons' >
+                                                <Col xs={2} className = 'product-control-buttons' >
                                                     <span onClick = {()=>remove(product)}>-</span>
                                                     <span onClick = {()=>addProduct(product)}>+</span>
                                                 </Col>
-                                                <Col xs='auto' className = 'product-price' >
-                                                    $ {product.price}
+                                                <Col xs={2} className = 'product-price' >
+                                                     {`$${product.price}`}
                                                 </Col>
                                                 <Col
-                                                    xs='auto'
+                                                    xs={1}
                                                     className='remove-from-cart'
                                                     onClick = {()=>removeProduct(product)}
                                                 >

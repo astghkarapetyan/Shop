@@ -17,13 +17,19 @@ const AllProducts = ({productsRequestService,data,loading,actionProducts,actionP
         }
 
     },[]);
-    console.log(loading,'loading')
     if( loading ) return <div>Loading...</div>;
+
     return (
         <div className='all-products-container'>
-           <AllProductsList
-               products={data}
-           />
+            {
+                data.length ? (
+                    <AllProductsList
+                        products={data}
+                    />
+                ):(
+                    <div className='no-products'>There are not products</div>
+                )
+            }
         </div>
     )
 };

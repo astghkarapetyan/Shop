@@ -1,28 +1,44 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import HeaderFixed from './header-fixed';
 import HeaderSubMenu from "./header-sub-menu";
-
+import { withProductsStoreService } from '../hoc';
+import { actionCategories } from "../../actions/actionCategories";
 import './header.css'
-const Header = ({cartCount})=>{
-    const [sumMenuInfo,setSumMenuInfo] = useState({showSubMenu:false});
-    const openSubMenu = (showInfo)=>{
-        setSumMenuInfo(showInfo)
+const Header = ({cartCount,productsStoreService,actionCategories,categories = {}})=>{
+    const [subMenuInfo,setSubMenuInfo] = useState({showSubMenu:false});
+    const openSubMenu = (showInfo = {})=>{
+        setSubMenuInfo(showInfo)
     };
     const closeSubMenu = ()=>{
-        setSumMenuInfo({showSubMenu:false})
+        setSubMenuInfo({showSubMenu:false})
     };
+    const { title,imgSrc=[],showSubMenu=[]} = subMenuInfo;
+    useEffect(()=>{
+        productsStoreService
+            .getAllCategories()
+            .then(data=>{
+                actionCategories(data)
+            })
+    },[]);
 
-    const { title,imgSrc=[],showSubMenu=[]} = sumMenuInfo;
     return(
         <div className='header-top' style={{backgroundColor:'white'}}>
             <div className='header-free-info'>FREE 3-DAY U.S. SHIPPING + FREE RETURNS</div>
             <div className="container">
-                <HeaderFixed
-                    openSubMenu = { openSubMenu }
-                    closeSubMenu = { closeSubMenu }
-                    cartCount = {cartCount}
-                />
+                {
+                    !Object.keys(categories).length ? (
+                             <div>loadding... </div>
+                    ): (
+                        <HeaderFixed
+                            openSubMenu = { openSubMenu }
+                            closeSubMenu = { closeSubMenu }
+                            cartCount = {cartCount}
+                            categories = { categories }
+                        />
+                    )
+                }
+
             </div>
             {
                 showSubMenu && (
@@ -35,7 +51,13 @@ const Header = ({cartCount})=>{
         </div>
     )
 };
-const mapStateToProps = ({cartInfo:{cartCount}})=>({
-    cartCount
+const mapStateToProps = ({cartInfo:{cartCount},categories})=>({
+    cartCount,
+    categories
 });
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = (dispatch)=>({
+    actionCategories:(data)=>dispatch(actionCategories(data))
+});
+export default withProductsStoreService()(
+    connect(mapStateToProps,mapDispatchToProps)(Header)
+);

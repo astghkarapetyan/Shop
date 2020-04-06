@@ -82,7 +82,7 @@ const  AddProductsContainer = ({productsRequestService,categories = {},actionAdd
         errorimages
     } = errors;
     return (
-        <div className="add-glasses-container">
+        <div className="add-product-container">
             <div>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Select Category name</Form.Label>

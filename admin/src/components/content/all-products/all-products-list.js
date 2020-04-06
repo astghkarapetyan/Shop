@@ -6,7 +6,6 @@ import './all-products.css';
 const AllProductsList = ({products})=>{
     const keys = Object.keys(productsTh);
     return (
-
         <div className='all-products-list-container'>
             <Table striped bordered hover>
                 <thead>
