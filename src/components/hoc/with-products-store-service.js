@@ -3,6 +3,12 @@ import { ProductsServicesConsumer } from "../context";
 
 const withProductsStoreService = ()=>(Wrapped)=>{
         return (props)=>{
+
+
+
+
+
+
             return(
                     <ProductsServicesConsumer>
                         {
