@@ -315,6 +315,7 @@
 }
 .cartCount{
     position: absolute;
-    top: 14px;
-    left: 22px;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%,-59%);
 }

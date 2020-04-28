@@ -6,7 +6,7 @@ const connection  = mysql.createConnection({
     database:'shop'
 });
 connection.connect((err)=>{
-    if(err) return console.log('errrr');
+    if(err) return console.log(err,'errrr');
     console.log('connected')
 });
 

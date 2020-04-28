@@ -3,8 +3,9 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { productsTh } from "../../helpers";
 import './all-products.css';
-const AllProductsList = ({products})=>{
+const AllProductsList = ({products,deleteProduct})=>{
     const keys = Object.keys(productsTh);
+
     return (
         <div className='all-products-list-container'>
             <Table striped bordered hover>
@@ -29,7 +30,7 @@ const AllProductsList = ({products})=>{
                                             {
                                                 td === 'images' ? (
                                                     <div className='products-images'>
-                                                        <img src={require(`../../../../../src/uploads/${JSON.parse( product[td])[0]}`)} />
+                                                        <img alt={'product-img'} src={require(`../../../../../src/uploads/${JSON.parse( product[td])[0]}`)} />
                                                     </div>
                                                 ): (
                                                     product[td]
@@ -40,8 +41,8 @@ const AllProductsList = ({products})=>{
                                     ))
                                 }
                                 <td className='actions'>
-                                    <Button variant="warning">Edit</Button>
-                                    <Button variant="danger">Delete</Button>
+                                    <Button variant="warning">*</Button>
+                                    <Button variant="danger" onClick={()=>deleteProduct(product.product_id)}>Delete</Button>
                                 </td>
                             </tr>
                         ))

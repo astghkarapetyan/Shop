@@ -12,10 +12,6 @@ import rxGlasses from '../img/rx_glasses.jpg';
 
 const SmallSearchMenu = ({handelToggle})=>{
     const [eventKey,setEventKey] = useState('');
-    const [showMenu,setShowMenu] = useState(true);
-    const closeSmallSearchMenu = ()=>{
-        setShowMenu(false)
-    };
     const handleEventKey = (value)=>{
         let currentValue = value === eventKey ? '' : value;
         setEventKey(currentValue)

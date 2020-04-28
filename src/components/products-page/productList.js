@@ -1,4 +1,4 @@
-import React,{memo,useState,useMemo } from 'react';
+import React,{memo,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Row from 'react-bootstrap/Row';
@@ -46,7 +46,7 @@ const ProductsList = ({products,location})=>{
                                                   }
                                               }}
                                         >
-                                            <img src={require(`../img/${hoverImage[product_id] ? JSON.parse(images)[1] : JSON.parse(images)[0]}`)} />
+                                            <img src={require(`../../uploads/${hoverImage[product_id] ? JSON.parse(images)[1] : JSON.parse(images)[0]}`)} />
                                         </Link>
                                     </div>
                                     <div className='product-name'>

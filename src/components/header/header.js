@@ -1,20 +1,28 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
 import HeaderFixed from './header-fixed';
-import HeaderSubMenu from "./header-sub-menu";
 import { withProductsStoreService } from '../hoc';
 import { actionCategories } from "../../actions/actionCategories";
 import './header.css'
 const Header = ({cartCount,productsStoreService,actionCategories,categories = {}})=>{
-    const [subMenuInfo,setSubMenuInfo] = useState({showSubMenu:false});
-    const openSubMenu = (showInfo = {})=>{
-        setSubMenuInfo(showInfo)
-    };
-    const closeSubMenu = ()=>{
-        setSubMenuInfo({showSubMenu:false})
-    };
-    const { title,imgSrc=[],showSubMenu=[]} = subMenuInfo;
     useEffect(()=>{
+        //  async action
+        // fetchProducts = (getProductData) => async dispatch =>{
+        //     dispatch({type:FETCH_PRODUCT_START});
+        //     try {
+        //         const data = await getProductData();
+        //         dispatch({
+        //             type:FETCH_PRODUCT_SUCCESS,
+        //             payload:data,
+        //         })
+        //     }catch (e) {
+        //         dispatch({
+        //             type:FETCH_PRODUCT_FAILURE,
+        //             payload:e,
+        //             error:true
+        //         })
+        //     }
+        // }
         productsStoreService
             .getAllCategories()
             .then(data=>{
@@ -28,11 +36,9 @@ const Header = ({cartCount,productsStoreService,actionCategories,categories = {}
             <div className="container">
                 {
                     !Object.keys(categories).length ? (
-                             <div>loadding... </div>
+                        <div>loading... </div>
                     ): (
                         <HeaderFixed
-                            openSubMenu = { openSubMenu }
-                            closeSubMenu = { closeSubMenu }
                             cartCount = {cartCount}
                             categories = { categories }
                         />
@@ -40,14 +46,6 @@ const Header = ({cartCount,productsStoreService,actionCategories,categories = {}
                 }
 
             </div>
-            {
-                showSubMenu && (
-                    <HeaderSubMenu
-                        title={title}
-                        imgSrc ={imgSrc}
-                    />
-                )
-            }
         </div>
     )
 };

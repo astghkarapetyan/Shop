@@ -1,5 +1,5 @@
 import { initialState } from "../store";
-import { PRODUCTS,PRODUCTSREQUESTED,CARTCOUNT} from "../actions/actionType";
+import { PRODUCTS,PRODUCTSREQUESTED} from "../actions/actionType";
 
 export const productsReducers = (state = initialState.products,action)=>{
     switch (action.type) {

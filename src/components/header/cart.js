@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React  from 'react';
 import { Link } from  'react-router-dom';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
@@ -47,7 +47,7 @@ const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
                                             <Row key={product.product_id}>
                                                 <Col xs={2} className = 'img-block'>
                                                     <span className='show-product-count'>{product.count}</span>
-                                                    <img src={require(`../img/${JSON.parse(product.images)[0]}`)} />
+                                                    <img src={require(`../../uploads/${JSON.parse(product.images)[0]}`)} />
                                                 </Col>
                                                 <Col xs={5} className = 'product-name'>
                                                     <p>{product.name}</p>
@@ -58,7 +58,7 @@ const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
                                                     <span onClick = {()=>addProduct(product)}>+</span>
                                                 </Col>
                                                 <Col xs={2} className = 'product-price' >
-                                                     {`$${product.price}`}
+                                                     {`$${Number(product.price).toFixed(2)}`}
                                                 </Col>
                                                 <Col
                                                     xs={1}
@@ -78,7 +78,7 @@ const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
                                             CHECKOUT
                                         </div>
                                         <div>
-                                           Total $ {totalPrice}
+                                           Total $ {Number(totalPrice).toFixed(2)}
                                         </div>
                                     </div>
                                 </div>

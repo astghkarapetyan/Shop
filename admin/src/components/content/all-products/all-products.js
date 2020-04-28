@@ -1,13 +1,14 @@
 import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actionProductsRequested } from "../../../actions/actionProductsRequested";
+import { actionDeleteProduct } from "../../../actions/actionDeleteProduct";
 import { actionProducts } from "../../../actions/actionProducts";
 import withProductsRequestService from '../../hoc';
 import AllProductsList from './all-products-list';
 import './all-products.css';
-const AllProducts = ({productsRequestService,data,loading,actionProducts,actionProductsRequested})=>{
+const AllProducts = ({productsRequestService,data,loading,actionProducts,actionDeleteProduct,actionProductsRequested,history,location})=>{
     useEffect(()=>{
-        if(data.length <= 1 ){
+        if(!data.length){
             actionProductsRequested();
             productsRequestService
                 .getAllProducts()
@@ -17,6 +18,11 @@ const AllProducts = ({productsRequestService,data,loading,actionProducts,actionP
         }
 
     },[]);
+    const deleteProduct = (product_id) => {
+        actionDeleteProduct(product_id);
+        productsRequestService
+            .deleteProduct(product_id)
+    };
     if( loading ) return <div>Loading...</div>;
 
     return (
@@ -25,6 +31,7 @@ const AllProducts = ({productsRequestService,data,loading,actionProducts,actionP
                 data.length ? (
                     <AllProductsList
                         products={data}
+                        deleteProduct = {deleteProduct}
                     />
                 ):(
                     <div className='no-products'>There are not products</div>
@@ -40,6 +47,7 @@ const mapStateToProps = ({products:{data,loading}})=>({
 const mapDispatchToProps = (dispatch)=>({
     actionProducts:(products)=>dispatch(actionProducts(products)),
     actionProductsRequested:()=>dispatch(actionProductsRequested()),
+    actionDeleteProduct:(id)=>dispatch(actionDeleteProduct(id)),
 });
 
 export default withProductsRequestService()(

@@ -1,5 +1,4 @@
 import { fetchMineStructure } from "../components/helpers";
-
 class ProductRequestService {
     getAllProducts(){
        return fetchMineStructure('/all-products','GET',false)
@@ -12,11 +11,14 @@ class ProductRequestService {
                         response.ok ? json : Promise.reject(json)
                     ))
             ))
-            .then(data=>{
-                actionAddOneProduct(data)
+            .then( data => {
+                 actionAddOneProduct(data)
             });
 
 
+    }
+    deleteProduct(id){
+        return  fetchMineStructure(`/delete/${id}`,'GET',false)
     }
     getAllCategories(){
         return fetchMineStructure('/all-categories','GET',false)

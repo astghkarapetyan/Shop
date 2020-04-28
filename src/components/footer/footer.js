@@ -13,7 +13,7 @@ const Footer = ()=>{
                 <Row>
                     <Col lg={3} sm={6} xs={12}>
                         <div className='f-part1'>
-                            <p><Link to='/account/login'>MY ACCOUNT /work go to login/</Link></p>
+                            <p><Link to='/account/register'>MY ACCOUNT /work go to register/</Link></p>
                             <p>TRACK MY ORDER</p>
                             <p>RETURNS</p>
                             <p> WARRANTY</p>

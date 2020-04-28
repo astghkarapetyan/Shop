@@ -1,5 +1,4 @@
-import React,{ useReducer ,useEffect} from 'react';
-import withProductsRequestService from '../../hoc';
+import React,{ useReducer } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -46,9 +45,9 @@ const  AddProductsContainer = ({productsRequestService,categories = {},actionAdd
             }
         }
     };
-    const sendAddInfo = ()=>{
+    const sendAddInfo = (e)=>{
+        e.preventDefault();
         let allowToAdd = true;
-
         const formatData = new FormData();
         let addInfoKeys = Object.keys(addInfo);
         addInfoKeys = addInfoKeys.slice(0,addInfoKeys.length-1);
@@ -65,8 +64,7 @@ const  AddProductsContainer = ({productsRequestService,categories = {},actionAdd
         });
         if(allowToAdd){
             productsRequestService
-                .addProduct(formatData,actionAddOneProduct)
-
+                .addProduct(formatData,actionAddOneProduct);
             setAddInfo(initialObject)
         }
     };
@@ -98,8 +96,8 @@ const  AddProductsContainer = ({productsRequestService,categories = {},actionAdd
                         {
                            'categoryName' in categories ?
                                (
-                                   categories.categoryName.map(({category_name_id,category_name})=>(
-                                         <option key={category_name_id} value={category_name_id}>{category_name}</option>
+                                   categories.categoryName.map(({id,category_name})=>(
+                                         <option key={id} name={category_name} value={`${id}`}>{category_name}</option>
                                      ))
                                ) : ''
                         }
@@ -170,7 +168,6 @@ const  AddProductsContainer = ({productsRequestService,categories = {},actionAdd
                 </Form.Group>
                 <Button
                     variant="warning"
-                    type="submit"
                     size="lg"
                     onClick = {sendAddInfo}
                 >

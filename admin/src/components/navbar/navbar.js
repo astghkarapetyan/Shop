@@ -1,16 +1,15 @@
-import React,{ useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './navbar.css';
 
 const  Navbar = ({location})=> {
-    const [hideNavbar,setHideNavbar] =  useState(false);
     const setActiveClass = (path)=>{
         return location.pathname === path
     };
     return (
         <div
-            className={`navbar-container ${hideNavbar ? 'hideNavbar' : null }`}
+            className={`navbar-container`}
         >
 
             <ul className='navbar-list'>

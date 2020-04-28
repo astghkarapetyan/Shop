@@ -4,7 +4,7 @@ const app = express();
 
 app.use(bodyParser.json());
 //app.use(express.static('uploads'));
-const routerGlasses = require('./routes/products');
+const routerGlasses = require('./routes/products/products');
 
 app.use(routerGlasses);
 
