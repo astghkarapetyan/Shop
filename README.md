@@ -7,6 +7,11 @@ In the project directory, you can run:
 ### 1. npm install
 ### 2. npm start
 
+run server 
+
+### 1. npm install
+### 2. npm start
+
 ## For import database
 
 Download from root shop.sql and import.
