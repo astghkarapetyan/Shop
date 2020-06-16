@@ -6,29 +6,12 @@ import { actionCategories } from "../../actions/actionCategories";
 import './header.css'
 const Header = ({cartCount,productsStoreService,actionCategories,categories = {}})=>{
     useEffect(()=>{
-        //  async action
-        // fetchProducts = (getProductData) => async dispatch =>{
-        //     dispatch({type:FETCH_PRODUCT_START});
-        //     try {
-        //         const data = await getProductData();
-        //         dispatch({
-        //             type:FETCH_PRODUCT_SUCCESS,
-        //             payload:data,
-        //         })
-        //     }catch (e) {
-        //         dispatch({
-        //             type:FETCH_PRODUCT_FAILURE,
-        //             payload:e,
-        //             error:true
-        //         })
-        //     }
-        // }
         productsStoreService
             .getAllCategories()
             .then(data=>{
                 actionCategories(data)
             })
-    },[]);
+    },[productsStoreService, actionCategories]);
 
     return(
         <div className='header-top' style={{backgroundColor:'white'}}>

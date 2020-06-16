@@ -5,7 +5,6 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
 import sunglasses from '../img/sunglasses.png';
 import rxGlasses from '../img/rx_glasses.jpg';
 
@@ -42,7 +41,7 @@ const SmallSearchMenu = ({handelToggle})=>{
                             <Card style={{background:eventKey === 0 ? '#eee':'white'}}>
                                 <Accordion.Toggle onClick={()=>handleEventKey(0)} eventKey="0">
                                     <Row>
-                                        <Col xs={4}><img src={sunglasses} /></Col>
+                                        <Col xs={4}><img alt='' src={sunglasses} /></Col>
                                         <Col xs={6}>SHOP SUNGLASSES </Col>
                                         <Col xs={2}><div className={eventKey === 0 ? null :'rotate'}>^</div></Col>
                                     </Row>
@@ -54,7 +53,7 @@ const SmallSearchMenu = ({handelToggle})=>{
                             <Card style={{background:eventKey === 1 ? '#eee':'white'}}>
                                 <Accordion.Toggle onClick={()=>handleEventKey(1)}  eventKey="1">
                                     <Row>
-                                        <Col xs={4}><img src={rxGlasses} /></Col>
+                                        <Col xs={4}><img alt='' src={rxGlasses} /></Col>
                                         <Col xs={6}>SHOP RX GLASSES</Col>
                                         <Col xs={2}><div className={eventKey === 1 ? null :'rotate'}>^</div></Col>
                                     </Row>

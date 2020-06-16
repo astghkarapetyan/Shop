@@ -46,7 +46,7 @@ const ProductsList = ({products,location})=>{
                                                   }
                                               }}
                                         >
-                                            <img src={require(`../../uploads/${hoverImage[product_id] ? JSON.parse(images)[1] : JSON.parse(images)[0]}`)} />
+                                            <img alt='' src={require(`../../uploads/${hoverImage[product_id] ? JSON.parse(images)[1] : JSON.parse(images)[0]}`)} />
                                         </Link>
                                     </div>
                                     <div className='product-name'>

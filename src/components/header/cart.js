@@ -47,7 +47,7 @@ const SmallSearchMenu = ({handelCartToggle,cartInfo,actionCartCount})=>{
                                             <Row key={product.product_id}>
                                                 <Col xs={2} className = 'img-block'>
                                                     <span className='show-product-count'>{product.count}</span>
-                                                    <img src={require(`../../uploads/${JSON.parse(product.images)[0]}`)} />
+                                                    <img alt='' src={require(`../../uploads/${JSON.parse(product.images)[0]}`)} />
                                                 </Col>
                                                 <Col xs={5} className = 'product-name'>
                                                     <p>{product.name}</p>

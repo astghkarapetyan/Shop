@@ -41,7 +41,7 @@ const ProductsPage = ({
                 });
         }
 
-    },[categoryNameInState]);
+    },[categoryNameInState, categoryName, actionProducts, productsStoreService, actionProductsRequested,category_id]);
 
     return(
         <div>

@@ -34,6 +34,7 @@ const MainPage = ()=>{
                 <Col className="video-block" xs={12} lg={9} >
 
                         <iframe
+                            title='glasses video'
                             width="100%"
                             height="auto"
                             src="https://www.youtube.com/embed/a7yRNqnJdTY?autoplay=1&loop=0&controls=0&mute=1"

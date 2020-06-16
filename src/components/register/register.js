@@ -56,6 +56,7 @@ const Register = ()=>{
                     setRegisterInfo({[`error${inpValue}`]:true})
                 }
                 return;
+            default: return
 
         }
     };

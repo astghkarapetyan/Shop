@@ -25,7 +25,7 @@ const ProductDetail = ({products,location,actionCartCount,productsStoreService})
                 });
 
         }
-    },[]);
+    },[product, productsStoreService,itemId]);
     if(!product) return <Loading/>;
    const addToCart = ()=>{
        actionCartCount(ADDTOCART_COUNT,product)
@@ -36,7 +36,7 @@ const ProductDetail = ({products,location,actionCartCount,productsStoreService})
                 <Row>
                     <Col xs={12} sm={6} md={7}>
                         <div className="detail-part1">
-                            <img src={require(`../../uploads/${JSON.parse(product.images)[0]}`)} />
+                            <img alt='' src={require(`../../uploads/${JSON.parse(product.images)[0]}`)} />
                         </div>
 
                     </Col>
