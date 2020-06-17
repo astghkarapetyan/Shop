@@ -1,5 +1,5 @@
 import React,{ Suspense,lazy} from 'react';
-import  { Switch,Route,withRouter } from 'react-router';
+import  { Switch,Route,withRouter, Redirect } from 'react-router';
 import Header from './components/header';
 import MainPage from './components/main-page';
 import Footer from './components/footer';
@@ -20,6 +20,7 @@ function App({location}) {
                 <Route exact path='/account/register' component={Register}  />
                 <Route exact path='/collections/:name' component={ProductsPage}  />
                 <Route exact path='/collections/:name/products/:dName' component={ProductDetail} />
+                <Redirect to={'/'} />
             </Switch>
             {
                 location.pathname !== '/' && <Footer/>
@@ -30,30 +31,3 @@ function App({location}) {
 }
 
 export default withRouter(App);
-
-
-
-//
-// let scrolled = $(window).scrollTop();
-// let windowHeight = $(window).height();
-//
-// function animEach(isLoading){
-//     $('[class ^= "animate-"]').each(function () {
-//         $(this).children().each(function (i) {
-//             if(isLoading){
-//                 $(this).css("transition-delay", 0.2 * (i - 1) + "s");
-//             }
-//             let itemOffsetTop = $(this).offset().top;
-//             let itemHeight = $(this).height();
-//             if (itemOffsetTop - scrolled < windowHeight - 30 && itemOffsetTop - scrolled + itemHeight > 30) {
-//                 $(this).addClass("complete");
-//             }
-//         });
-//     });
-// }
-// animEach(true);
-//
-// $(window).scroll(function () {
-//     scrolled = $(this).scrollTop();
-//     animEach(false);
-// });
